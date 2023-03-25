@@ -1,5 +1,3 @@
-const sleep = (ms) => new Promise((r) => setTimeout(ms));
-
 function chooseRandomElement(array) {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
@@ -12,8 +10,17 @@ function chooseRandomElement(array) {
   const cursor = document.createElement("span");
   cursor.classList.add("cursor");
 
-  const strContents =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at vulputate arcu. Sed condimentum est ac lectus maximus viverra. Nulla rutrum in ipsum sollicitudin iaculis. Donec dignissim tempus leo, at convallis magna pretium vulputate. Morbi placerat pretium euismod. Sed blandit ut mauris id finibus. In vehicula, dui id fringilla porta, nisi sem rutrum diam, ut iaculis ipsum turpis nec arcu. Vivamus hendrerit mauris justo, vitae mattis dui iaculis interdum. Maecenas dignissim condimentum suscipit. Fusce sit amet ex sagittis, eleifend nunc ac, pulvinar sem. Praesent laoreet bibendum tempor. Quisque luctus massa felis, ut venenatis nulla volutpat vitae. Cras sodales vel velit eget consequat.";
+  const strContents = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+    Nunc at vulputate arcu. Sed condimentum est ac lectus maximus viverra.
+    Nulla rutrum in ipsum sollicitudin iaculis. Donec dignissim tempus leo,
+    at convallis magna pretium vulputate. Morbi placerat pretium euismod.
+    Sed blandit ut mauris id finibus. In vehicula, dui id fringilla porta,
+    nisi sem rutrum diam, ut iaculis ipsum turpis nec arcu. Vivamus hendrerit
+    mauris justo, vitae mattis dui iaculis interdum. Maecenas dignissim
+    condimentum suscipit. Fusce sit amet ex sagittis, eleifend nunc ac, pulvinar sem.
+    Praesent laoreet bibendum tempor. Quisque luctus massa felis, ut venenatis
+    nulla volutpat vitae. Cras sodales vel velit eget consequat.`;
+
   const tokens = strContents.split(" ");
 
   for (let i = 0; i < tokens.length; i++) {
