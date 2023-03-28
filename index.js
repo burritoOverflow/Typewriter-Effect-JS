@@ -1,12 +1,9 @@
-function chooseRandomElement(array) {
-  const randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
+function getRandomTimeout(min = 300, max = 1200) {
+  return Math.random() * (max - min) + min;
 }
 
 (async function () {
   const mainHeader = document.getElementById("main-header");
-  const timeouts = [411, 611, 1102, 202, 313];
-
   const cursor = document.createElement("span");
   cursor.classList.add("cursor");
 
@@ -24,8 +21,8 @@ function chooseRandomElement(array) {
   const tokens = strContents.split(" ");
 
   for (let i = 0; i < tokens.length; i++) {
-    console.info(`Sleeping at ${new Date()}`);
-    await new Promise((r) => setTimeout(r, chooseRandomElement(timeouts)));
+    console.info(`Sleeping at ${new Date().valueOf()}`);
+    await new Promise((r) => setTimeout(r, getRandomTimeout()));
 
     const spanEl = document.createElement("span");
     spanEl.innerText = `${tokens[i]} `;
@@ -36,7 +33,7 @@ function chooseRandomElement(array) {
     setTimeout(() => {
       spanEl.classList.remove("span-token-text");
       spanEl.classList.add("span-token-text-complete");
-    }, chooseRandomElement(timeouts));
+    }, getRandomTimeout());
   }
 
   spinner.style.display = "none";
