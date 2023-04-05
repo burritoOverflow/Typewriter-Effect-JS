@@ -6,13 +6,26 @@ function createAuthorHeader() {
   const authorHeader = document.createElement("h3");
   authorHeader.id = "author-header";
   const authorStr = "H.P Lovecraft";
+  const charEls = Array();
+
   for (let i = 0; i < authorStr.length; i++) {
     const charSpan = document.createElement("span");
-    charSpan.classList.add("author-char");
     charSpan.innerText = authorStr.charAt(i);
+    charEls.push(charSpan);
     authorHeader.appendChild(charSpan);
   }
-  return authorHeader;
+
+  async function addCharClass() {
+    for (let i = 0; i < charEls.length; i++) {
+      const charSpan = charEls[i];
+      await new Promise((r) => {
+        setTimeout(r, getRandomTimeout(112, 459));
+      });
+      charSpan.classList.add("author-char");
+    }
+  }
+
+  return { authorHeader, addCharClass };
 }
 
 (async function () {
@@ -20,7 +33,6 @@ function createAuthorHeader() {
   const mainHeader = document.getElementById("main-header");
 
   function styleFinishedText(tokenEl) {
-    console.info("Token ", tokenEl.innerText);
     tokenEl.classList.remove("span-token-text");
     tokenEl.classList.add("span-token-text-complete");
   }
@@ -46,7 +58,6 @@ function createAuthorHeader() {
 
   for (let i = 0; i < tokens.length; i++) {
     if (tokens[i].replace(/ /g, "").length === 0) {
-      console.info("Empty token found");
       continue;
     }
 
@@ -79,6 +90,9 @@ function createAuthorHeader() {
     element.classList.add("span-token-text-complete");
   });
 
-  mainHeader.appendChild(createAuthorHeader());
-  mainHeader.removeChild(cursor)
+  const { authorHeader, addCharClass } = createAuthorHeader();
+
+  mainHeader.appendChild(authorHeader);
+  mainHeader.removeChild(cursor);
+  addCharClass();
 })();
